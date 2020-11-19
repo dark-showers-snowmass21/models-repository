@@ -1,0 +1,93 @@
+ ! File: main42.cmnd
+! This file contains commands to be read in for a Pythia8 run.
+! Lines not beginning with a letter or digit are comments.
+! Names are case-insensitive  -  but spellings-sensitive!
+! The changes here are illustrative, not always physics-motivated.
+
+! 1) Settings that will be used in a main program.
+Main:numberOfEvents = 5000          ! number of events to generate
+Main:timesAllowErrors = 30          ! abort run after this many flawed events
+
+Random:setSeed = on
+Random:seed = 111
+
+! 2) Settings related to output in init(), next() and stat().
+Init:showChangedSettings = on      ! list changed settings
+Init:showAllSettings = off         ! list all settings
+Init:showChangedParticleData = on  ! list changed particle data
+Init:showAllParticleData = off     ! list all particle data
+Next:numberCount = 1000            ! print message every n events
+Next:numberShowLHA = 1             ! print LHA information n times
+Next:numberShowInfo = 1            ! print event information n times
+Next:numberShowProcess = 1         ! print process record n times
+Next:numberShowEvent = 1           ! print event record n times
+Stat:showPartonLevel = on          ! additional statistics on MPI
+
+! 3) Beam parameter settings. Values below agree with default ones.
+Beams:idA = 2212                   ! first beam, p = 2212, pbar = -2212
+Beams:idB = 2212                   ! second beam, p = 2212, pbar = -2212
+Beams:eCM = 13000.                 ! CM energy of collision
+
+
+Beams:frameType = 4                ! read info from a LHEF
+Beams:LHEF = unweighted_events_2000.lhe             ! the LHEF to read from
+
+#double inv =0.3;
+#double mass = 20.0;
+#double lambda = 1.0;
+
+
+4900001:m0 = 5000
+4900002:m0 = 5000
+4900003:m0 = 5000
+4900004:m0 = 5000
+4900005:m0 = 5000
+4900006:m0 = 5000
+4900011:m0 = 5000
+4900012:m0 = 5000
+4900013:m0 = 5000
+4900014:m0 = 5000
+4900015:m0 = 5000
+4900016:m0 = 5000
+
+
+HiddenValley:Ngauge  = 2
+HiddenValley:Lambda = 1.0  #lambda
+HiddenValley:alphaFSR = 1.0   #lambda
+HiddenValley:spinFv = 0
+HiddenValley:FSR = on
+HiddenValley:fragment = on
+
+4900101:m0 = 10        # mass/2
+4900101:mWidth = 0.2   # mass/100
+4900101:mMin = 9.8      # mass/2 - mass/100
+4900101:mMax = 10.2      # mass/2 + mass/100
+
+
+4900111:m0 = 20     # mass
+4900113:m0 = 20    # mass
+4900211:m0 = 9.99    # mass/2.0-0.01
+4900213:m0 = 9.99      # mass/2.0-0.01
+ 
+
+ 
+HiddenValley:pTminFSR = 1.1    # 1.1*lambda
+HiddenValley:probVector = 0.75   
+    
+    
+4900111:onechannel = 1  0.7  91 -3 3                         # 1 + to_st(1.0-inv) + 91 -3 3
+4900111:addchannel = 1  0.3  0 4900211 -4900211              # 1 + to_st(inv) + 0 4900211 -4900211
+4900113:onechannel = 1  0.14 91 -1 1                         # 1 + to_st((1-inv)/5.) + 91 -1 1
+4900113:addchannel = 1  0.14 91 -2 2                         # 1  + to_st((1-inv)/5.)  + 91 -2 2
+4900113:addchannel = 1  0.14 91 -3 3                         # 1 + to_st((1-inv)/5.) + 91 -3 3
+4900113:addchannel = 1  0.14 91 -4 4                         # 1 + to_st((1-inv)/5.) + 91 -4 4
+4900113:addchannel = 1  0.14 91 -5 5                         # 1+ to_st((1-inv)/5.) +  91 -5 5
+4900113:addchannel = 1  0.3  0 4900213 -4900213              # 1 + to_st(inv) + 0 4900213 -4900213    	    
+
+
+! 6) Other settings. Can be expanded as desired.
+! Note: may overwrite some of the values above, so watch out.
+Tune:ee = 7
+Tune:pp = 14                        ! use Tune 4Cx
+ParticleDecays:limitTau0 = on      ! set long-lived particle stable ...
+ParticleDecays:tau0Max = 10        ! ... if c*tau0 > 10 mm
